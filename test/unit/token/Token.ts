@@ -5,7 +5,7 @@ export function testToken(): void {
   describe("Token", function () {
     beforeEach(async function () {
       const { token } = await this.loadFixture(tokenFixture);
-      this.token = token;
+      this.contracts.token = token;
     });
 
     shouldBehaveLikeToken();

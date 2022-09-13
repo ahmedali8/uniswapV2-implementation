@@ -29,7 +29,10 @@
     "test:gas": "REPORT_GAS=true CONTRACT_SIZER=true hardhat test",
     "test:trace": "hardhat test --trace",
     "test:fulltrace": "hardhat test --fulltrace",
-    "typechain": "cross-env TS_NODE_TRANSPILE_ONLY=true hardhat typechain",
+    "typechain:uniswap-core": "typechain --target ethers-v5 --out-dir src/types './node_modules/@uniswap/v2-core/build/?(IUniswapV2Callee.json|IUniswapV2ERC20.json|IUniswapV2Factory.json|IUniswapV2Pair.json|UniswapV2Factory.json|UniswapV2Pair.json|UniswapV2ERC20.json)'",
+    "typechain:uniswap-periphery": "typechain --target ethers-v5 --out-dir src/types './node_modules/@uniswap/v2-periphery/build/?(IUniswapV2Router02.json|UniswapV2Router02.json|WETH9.json|IWETH.json)'",
+    "typechain:uniswap": "yarn typechain:uniswap-core && yarn typechain:uniswap-periphery",
+    "typechain": "yarn typechain:uniswap && cross-env TS_NODE_TRANSPILE_ONLY=true hardhat typechain",
     "verify": "hardhat run scripts/verify.ts --network"
   },
   "devDependencies": {
@@ -67,6 +70,7 @@
     "@types/node": "^18.7.13",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@typescript-eslint/parser": "^5.35.1",
+    "@uniswap/v2-core": "^1.0.1",
     "chai": "4.3.6",
     "chalk": "^4.1.2",
     "commitizen": "^4.2.5",
@@ -97,7 +101,8 @@
     "ts-generator": "^0.1.1",
     "ts-node": "^10.9.1",
     "typechain": "^8.1.0",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.2",
+    "uniswap-v2-deploy-plugin": "^0.0.4"
   },
   "files": [
     "/contracts"

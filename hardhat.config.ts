@@ -8,6 +8,7 @@ import "hardhat-storage-layout";
 import type { HardhatUserConfig } from "hardhat/config";
 import type { HttpNetworkAccountsUserConfig, NetworkUserConfig } from "hardhat/types";
 import { resolve } from "path";
+import "uniswap-v2-deploy-plugin";
 
 import { API_KEYS } from "./config/api-keys";
 import { NETWORKS, Network, NetworkName } from "./config/networks";
@@ -104,7 +105,7 @@ const config: HardhatUserConfig = {
   },
   paths: {
     artifacts: "./artifacts",
-    cache: "./cache",
+    cache: "./hardhat_cache", // Avoid foundry cache conflict.
     deploy: "./deploy",
     deployments: "./deployments",
     sources: "./contracts",

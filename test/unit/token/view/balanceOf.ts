@@ -7,7 +7,7 @@ import { toWei } from "../../../../utils/format";
 export default function shouldBehaveLikeBalanceOf(): void {
   context("when the account does not have a balance", function () {
     it("retrieves zero", async function () {
-      const balance: BigNumber = await this.token.balanceOf(this.signers.user.address);
+      const balance: BigNumber = await this.contracts.token.balanceOf(this.signers.user.address);
       expect(balance).to.equal(Zero);
     });
   });
@@ -16,11 +16,15 @@ export default function shouldBehaveLikeBalanceOf(): void {
     const initialBalance: BigNumber = toWei("100");
 
     beforeEach(async function () {
-      await this.token.connect(this.signers.user).mint(this.signers.user.address, initialBalance);
+      await this.contracts.token
+        .connect(this.signers.user)
+        .mint(this.signers.user.address, initialBalance);
     });
 
     it("retrieves the correct balance", async function () {
-      expect(await this.token.balanceOf(this.signers.user.address)).to.be.equal(initialBalance);
+      expect(await this.contracts.token.balanceOf(this.signers.user.address)).to.be.equal(
+        initialBalance
+      );
     });
   });
 }

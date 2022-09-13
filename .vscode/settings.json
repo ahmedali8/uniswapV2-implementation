@@ -11,5 +11,15 @@
       "strings": true
     }
   },
-  "solidity.compileUsingRemoteVersion": "v0.8.15"
+  "search.exclude": { "lib": true },
+  "files.associations": {
+    ".gas-snapshot": "julia"
+  },
+  "solidity.linter": "solhint",
+  "solidity.defaultCompiler": "remote",
+  "solidity.compileUsingRemoteVersion": "v0.8.15",
+  "solidity.enabledAsYouTypeCompilationErrorCheck": true,
+  "solidity.validationDelay": 1500,
+  "solidity.packageDefaultDependenciesContractsDirectory": "contracts",
+  "solidity.packageDefaultDependenciesDirectory": "'lib', 'node_modules'"
 }
