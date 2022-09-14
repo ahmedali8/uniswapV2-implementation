@@ -1,10 +1,5 @@
 name: "CI"
 
-env:
-  ACCOUNT_TYPE: "MNEMONIC"
-  MNEMONIC: ${{ secrets.MNEMONIC }}
-  INFURA_PROJECT_ID: ${{ secrets.INFURA_PROJECT_ID }}
-
 on:
   pull_request:
     branches:
@@ -14,36 +9,62 @@ on:
       - "main"
 
 jobs:
-  ci:
+  check:
+    name: "Check"
     runs-on: "ubuntu-latest"
     steps:
-      - name: "Check out the repo"
-        uses: "actions/checkout@v3"
-
-      - name: "Install Node.js"
-        uses: "actions/setup-node@v3"
+      - uses: "actions/checkout@v3"
+      - uses: "actions-rs/toolchain@v1"
         with:
-          cache: "yarn"
-          node-version: "16"
+          override: true
+          profile: "minimal"
+          toolchain: "stable"
+      - uses: "actions-rs/cargo@v1"
+        with:
+          command: "check"
 
-      - name: "Install the dependencies"
-        run: "yarn install --immutable"
+  test:
+    name: "Test Suite"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "actions-rs/toolchain@v1"
+        with:
+          override: true
+          profile: "minimal"
+          toolchain: "stable"
+      - uses: "actions-rs/cargo@v1"
+        with:
+          command: "test"
 
-      - name: "Lint the code"
-        run: "yarn lint"
+  fmt:
+    name: "Rustfmt"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "actions-rs/toolchain@v1"
+        with:
+          override: true
+          profile: "minimal"
+          toolchain: "nightly"
+      - run: "rustup component add rustfmt"
+      - uses: "actions-rs/cargo@v1"
+        with:
+          command: "fmt"
+          args: "--all -- --check"
 
-      - name: "Add lint summary"
-        run: |
-          echo "## Lint results" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Passed" >> $GITHUB_STEP_SUMMARY
-
-      - name: "Compile the contracts and generate the TypeChain bindings"
-        run: "yarn typechain"
-
-      - name: "Test the contracts and generate the coverage report"
-        run: "yarn coverage"
-
-      - name: "Add test summary"
-        run: |
-          echo "## Test results" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Passed" >> $GITHUB_STEP_SUMMARY
+  clippy:
+    name: "Clippy"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "actions-rs/toolchain@v1"
+        with:
+          override: true
+          profile: "minimal"
+          toolchain: "nightly"
+      - run: "rustup component add clippy"
+      - uses: "actions-rs/cargo@v1"
+        with:
+          command: "clippy"
+          args: "-- -D warnings"

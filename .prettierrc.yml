@@ -1,19 +1,7 @@
+arrowParens: "avoid"
 bracketSpacing: true
-endOfLine: auto
-printWidth: 100
+endOfLine: "auto"
+printWidth: 120
 singleQuote: false
 tabWidth: 2
-trailingComma: "es5"
-
-importOrder: ["<THIRD_PARTY_MODULES>", "^[./]"]
-importOrderParserPlugins: ["typescript"]
-importOrderSeparation: true
-importOrderSortSpecifiers: true
-
-overrides:
-  - files: "*.sol"
-    options:
-      tabWidth: 4
-      useTabs: false
-      bracketSpacing: true
-      explicitTypes: "always"
+trailingComma: "all"

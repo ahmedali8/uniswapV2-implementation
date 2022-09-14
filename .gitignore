@@ -1,67 +1,8 @@
-# Ignore all Visual Studio Code settings
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
+# directories
+target/
 
-# Local history for Visual Studio Code
-.history
+# files
+**/*.rs.bk
 
-# Dependency directory
-node_modules
-
-# dotenv environment variable files
 .env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
-
-# Log files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Optional npm cache directory
-.npm
-
-# Modern Yarn files
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-
-# Hardhat files
-**/docs
-**/artifacts
-**/hardhat_cache
-.deps
-**/src/types/**
-
-# TypeScript bindings output directory
-typechain-types
-
-# solidity-coverage directory and output file
-coverage
-coverage.json
-**/.coverage_artifacts
-**/.coverage_cache
-**/.coverage_contracts
-
-# Foundry
-bin
-out
-foundry_cache
-out_0_5_x
-out_0_6_x
-
-# Ignore flattened files
-**.flat.sol
-
-# Miscellaneous files
-**/storageLayout
+Cargo.lock
