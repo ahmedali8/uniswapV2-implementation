@@ -1,10 +1,17 @@
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [package]
-authors = ["Paul Razvan Berg <hello@paulrberg.com>"]
-description = "A template for developing Rust projects, with sensible defaults"
-edition = "2021"
+authors = ["tmsdev82 <github.com/tmsdev82>", "Ahmed Ali <github.com/ahmedali8>"]
+description = "Uniswap V2 token swap example in Rust"
+edition = "2018"
 homepage = "https://github.com/paulrberg/rust-template"
 license = "MIT"
-name = "rust-template"
+name = "uniswapV2-impl-rs"
 version = "0.1.0"
+
+[dependencies]
+hex = "0.4"
+web3 = "0.17.0"
+tokio = { version= "1", features = ["full"] }
+dotenv = "0.15.0"
+secp256k1 = "0.20.3"
