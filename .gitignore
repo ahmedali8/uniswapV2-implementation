@@ -57,6 +57,8 @@ coverage.json
 bin
 out
 foundry_cache
+out_0_5_x
+out_0_6_x
 
 # Ignore flattened files
 **.flat.sol

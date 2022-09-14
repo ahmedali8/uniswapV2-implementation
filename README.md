@@ -15,3 +15,5 @@ $ yarn test or forge test
 ```
 
 Thanks to uniswapV2 deployment package: [uniswap-v2-deploy-plugin](https://github.com/AlexBHarley/uniswap-v2-deploy-plugin)
+
+foundryup -C 63ed109

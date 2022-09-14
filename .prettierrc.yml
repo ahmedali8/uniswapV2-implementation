@@ -15,5 +15,5 @@ overrides:
     options:
       tabWidth: 4
       useTabs: false
-      bracketSpacing: false
+      bracketSpacing: true
       explicitTypes: "always"

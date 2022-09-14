@@ -13,8 +13,8 @@ cache_path = 'foundry_cache'                                  # where the cache 
 force = true                                                  # whether to ignore the cache (clean build)
 evm_version = 'london'                                        # the evm version (by hardfork name)
 gas_reports = ['*']                                           # list of contracts to report gas of
-# solc_version = '0.8.16'                                      # override for the solc version (setting this ignores `auto_detect_solc`)
-auto_detect_solc = true                                       # enable auto-detection of the appropriate solc version to use
+solc_version = '0.8.15'                                       # override for the solc version (setting this ignores `auto_detect_solc`)
+# auto_detect_solc = true                                       # enable auto-detection of the appropriate solc version to use
 offline = false                                               # offline mode, if enabled, network access (downloading solc) is disallowed
 optimizer = true                                              # enable or disable the solc optimizer
 optimizer_runs = 200                                          # the number of optimizer runs
@@ -24,7 +24,7 @@ verbosity = 2                                                 # the verbosity of
 ignored_error_codes = [1878, 5574]                            # a list of ignored solc error codes
 fuzz_runs = 256                                               # the number of fuzz runs for tests
 ffi = false                                                   # whether to enable foreign function interface (ffi) cheatcodes or not
-sender = '0x00a329c0648769a73afac7f9381e08fb43dbea72'         # the address of `msg.sender` in tests
+sender = '0xf5a9680355239c7e14646ed62b044e39de154512'         # the address of `msg.sender` in tests
 tx_origin = '0x00a329c0648769a73afac7f9381e08fb43dbea72'      # the address of `tx.origin` in tests
 initial_balance = '0xffffffffffffffffffffffff'                # the initial balance of the test contract
 block_number = 0                                              # the block number we are at in tests
@@ -59,17 +59,19 @@ sparse_mode = false
 # Setting this option enables decoding of error traces from mainnet deployed / verfied contracts via etherscan
 etherscan_api_key='YOURETHERSCANAPIKEY'
 
-## optimizer details for the default profile
-[profile.default.optimizer_details]
-constantOptimizer = true                                      # whether to enable the optimizer for literal numbers and strings or not
-yul = true                                                    # whether to enable the new Yul optimizer or not
-
-# sets the `yulDetails` of the `optimizer_details` for the `default` profile
-[profile.default.optimizer_details.yulDetails]
-stackAllocation = true                                        # whether to enable the improvement of allocation of stack slots for variables or not
-optimizerSteps = 'dhfoDgvulfnTUtnIf'                          # the optimization steps to be applied
-
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
 
 [profile.ci]
 fuzz-runs = 500
+
+# for @uniswap/v2-periphery
+[profile.0_6_x]
+src = 'node_modules/@uniswap/v2-periphery/contracts'
+out = 'out_0_6_x'
+solc_version = '0.6.6'
+
+# for @uniswap/v2-core
+[profile.0_5_x]
+src = 'node_modules/@uniswap/v2-core/contracts'
+out = 'out_0_5_x'
+solc_version = '0.5.16'

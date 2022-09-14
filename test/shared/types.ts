@@ -31,5 +31,4 @@ export interface Contracts {
 export interface Signers {
   signer: SignerWithAddress;
   user: SignerWithAddress;
-  accounts: SignerWithAddress[];
 }

@@ -14,7 +14,6 @@ describe("Unit tests", () => {
     const signers: SignerWithAddress[] = await ethers.getSigners();
     this.signers.signer = signers[0];
     this.signers.user = signers[1];
-    this.signers.accounts = signers.slice(2);
 
     this.loadFixture = loadFixture;
   });
